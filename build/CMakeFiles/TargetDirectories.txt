@@ -1,0 +1,3 @@
+/Users/dangomushi/vielfalt/build/CMakeFiles/vielfalt.dir
+/Users/dangomushi/vielfalt/build/CMakeFiles/edit_cache.dir
+/Users/dangomushi/vielfalt/build/CMakeFiles/rebuild_cache.dir
