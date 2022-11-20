@@ -73,7 +73,7 @@ void VirtualMachine::main(vector<int> bytes, int offset) {
 		}
 
 		case POP: {
-			offset++;
+			offset+=2;
 			Stack.pop_back();
 			break;
 		}
@@ -81,6 +81,15 @@ void VirtualMachine::main(vector<int> bytes, int offset) {
 		case ENTRY: {
 			entry.push_back(offset++);
 			offset++;
+			break;
+		}
+
+		case LT: {
+			offset++;
+			std::cout << "DEBUG    LT:" << Stack[Stack.size()-1] << " < " << Stack[Stack.size()-2] << std::endl;
+			(Stack[Stack.size()-1] < Stack[Stack.size()-2]) 
+				? Stack.push_back(1) 
+				: Stack.push_back(0);			
 			break;
 		}
 
@@ -199,9 +208,7 @@ void VirtualMachine::main(vector<int> bytes, int offset) {
 			byte+=2;
 			// スタックトップとスタック2番目を比較してスタックトップの方が大きければ0をプッシュ
 			std::cout << "    LT: " << Stack[Stack.size()-2] << ">" << Stack[Stack.size()-1] << std::endl;
-			(Stack[Stack.size()-1] < Stack[Stack.size()-2])
-				? Stack.push_back(1)
-				: Stack.push_back(0);
+			(Stack[Stack.size()-1] < Stack[Stack.size()-2]) ? Stack.push_back(1) : Stack.push_back(0);
 
 			StackBuf.pop_back();
 			--stackOffset;
